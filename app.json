@@ -1,11 +1,11 @@
 {
-  "name": "wskit",
+  "name": "n",
   "env": {
     "YOUR_APP_NAME": {
          "description": "YOUR_APP_NAME, the same with above",
          "value": ""
     }
   },
-  "repository": "https://github.com/RlCig/hero",
+  "repository": "https://github.com/tempolo/n",
   "stack": "container"
  }
