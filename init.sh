@@ -51,8 +51,7 @@ cat > ./cron.sh <<"eof"
 #!/bin/bash
 while [ true ]
 do
-whoami
-curl -sL https://$YOUR_APP_NAME.herokuapp.com/test
+curl -sL https://$YOUR_APP_NAME.herokuapp.com/$(whoami)
 sleep 1200
 done
 eof
