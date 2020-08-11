@@ -1,0 +1,11 @@
+{
+  "name": "wskit",
+  "env": {
+    "YOUR_APP_NAME": {
+         "description": "YOUR_APP_NAME, the same with above",
+         "value": ""
+    }
+  },
+  "repository": "https://github.com/RlCig/hero",
+  "stack": "container"
+ }
