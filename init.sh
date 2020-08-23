@@ -47,19 +47,35 @@ ClientAliveCountMax 3
 eof
 $(which sshd) -f sshd.conf
 
-cat > ./cron.sh <<"eof"
+cat > ~/.bin/cron <<'eof'
 #!/bin/bash
-while [ true ]
+for i in {00..$(expr $1 \* 2)}
 do
-curl -sL https://$YOUR_APP_NAME.herokuapp.com/$(whoami)
-sleep 1200
+  echo $i
+  curl -sL https://$YOUR_APP_NAME.herokuapp.com/$(whoami)
+  sleep 1680
 done
 eof
-bash cron.sh &
+chmod +x ~/.bin/cron
 
 rm -rf /init.sh
 
-curl -OL https://github.com/erebe/wstunnel/releases/download/v3.0/wstunnel-x64-linux.zip
-unzip wstunnel-x64-linux.zip
-chmod +x wstunnel
-./wstunnel --server ws://0.0.0.0:$PORT -r 127.0.0.1:2222 -q 
+curl -OL https://github.com/caddyserver/caddy/releases/download/v2.1.1/caddy_2.1.1_linux_amd64.tar.gz
+tar zxvf caddy_2.1.1_linux_amd64.tar.gz
+mkdir -p root
+cat > root/index.html <<"eof"
+$(whoami)
+eof
+./caddy file-server -root root -listen 127.0.0.1:3333
+
+curl -OL https://github.com/jpillora/chisel/releases/download/v1.6.0/chisel_1.6.0_linux_amd64.gz
+gzip -d chisel_1.6.0_linux_amd64.gz
+chmod +x chisel_1.6.0_linux_amd64
+./chisel_1.6.0_linux_amd64 --port $PORT --proxy http://127.0.0.1:3333 --auth <root:root>
+
+
+
+#curl -OL https://github.com/erebe/wstunnel/releases/download/v3.0/wstunnel-x64-linux.zip
+#unzip wstunnel-x64-linux.zip
+#chmod +x wstunnel
+#./wstunnel --server ws://0.0.0.0:$PORT -r 127.0.0.1:2222 -q 
