@@ -70,9 +70,9 @@ eof
 
 curl -OL https://github.com/jpillora/chisel/releases/download/v1.6.0/chisel_1.6.0_linux_amd64.gz
 gzip -d chisel_1.6.0_linux_amd64.gz
-chmod +x chisel_1.6.0_linux_amd64
-
-./chisel_1.6.0_linux_amd64 --port $PORT --proxy http://127.0.0.1:3333 --auth <root:root>
+chmod +x chisel_1.6.0_linux_am*
+mv chisel_1.6.0_linux_amd64 chisel
+./chisel --port $PORT --proxy http://127.0.0.1:3333 --auth <root:root>
 
 
 
