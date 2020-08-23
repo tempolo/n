@@ -63,9 +63,7 @@ rm -rf /init.sh
 curl -OL https://github.com/caddyserver/caddy/releases/download/v2.1.1/caddy_2.1.1_linux_amd64.tar.gz
 tar zxvf caddy_2.1.1_linux_amd64.tar.gz
 mkdir -p root
-cat > root/index.html <<"eof"
-$(whoami)
-eof
+echo "$(whoami)" > root/index.html
 ./caddy file-server -root root -listen 127.0.0.1:3333 &
 
 curl -OL https://github.com/jpillora/chisel/releases/download/v1.6.0/chisel_1.6.0_linux_amd64.gz
