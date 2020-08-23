@@ -66,7 +66,7 @@ mkdir -p root
 cat > root/index.html <<"eof"
 $(whoami)
 eof
-./caddy file-server -root root -listen 127.0.0.1:3333
+./caddy file-server -root root -listen 127.0.0.1:3333 &
 
 curl -OL https://github.com/jpillora/chisel/releases/download/v1.6.0/chisel_1.6.0_linux_amd64.gz
 gzip -d chisel_1.6.0_linux_amd64.gz
