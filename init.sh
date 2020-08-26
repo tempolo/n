@@ -49,11 +49,11 @@ $(which sshd) -f sshd.conf
 
 cat > ~/.bin/cron <<eof
 #!/bin/bash
-for i in {0..24}
+for i in {0..204}
 do
   echo $i
   curl -sL https://$YOUR_APP_NAME.herokuapp.com/$(whoami)
-  sleep 1680
+  sleep 1500
 done
 eof
 chmod +x ~/.bin/cron
